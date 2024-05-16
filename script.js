@@ -149,6 +149,8 @@ jessica.greet();
 
 */
 
+/*
+
 ////////////////////
 // Getters & Setters
 
@@ -203,3 +205,44 @@ class Person {
 const hochmajer = new Person('Ian Hochmajer', 1986);
 const plesk = new Person('Plesk Krist', 1989);
 console.log(hochmajer.age);
+
+// static method
+
+Person.hey = function () {
+  console.log('Hey there 🙋');
+  console.log(this); // constructor function
+};
+
+Person.hey();
+// hochmajer.hey(); // not inherited
+*/
+
+/*
+
+// Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+  // not a constructor function
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.calcAge();
+
+console.log(steven.__proto__);
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
+*/
