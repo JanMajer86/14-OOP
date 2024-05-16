@@ -246,3 +246,40 @@ const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
 */
+/*
+// CODING CHALLENGE #02
+class CarClass {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`New speed: ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`New speed: ${this.speed} km/h`);
+  }
+
+  get speedUS() {
+    return `${this.speed / 1.6} mph`;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const bmw = new CarClass('BMW', 120);
+bmw.accelerate();
+bmw.accelerate();
+bmw.brake();
+console.log(bmw.speedUS);
+bmw.brake();
+bmw.speedUS = 90;
+console.log(bmw.speedUS);
+bmw.accelerate();
+*/
