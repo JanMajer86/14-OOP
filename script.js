@@ -333,6 +333,11 @@ const Car = function (make, speed) {
   this.speed = speed;
 };
 
+Car.prototype.break = function () {
+  this.speed -= 5;
+  console.log(`${this.make} going at ${this.speed} km/h`);
+};
+
 const EV = function (make, speed, charge) {
   Car.call(this, make, speed);
   this.charge = charge;
@@ -350,5 +355,6 @@ EV.prototype.accelerate = function () {
 
 const tesla = new EV('Tesla', 120, 23);
 tesla.accelerate();
+tesla.break();
 console.log(tesla.speed);
 console.log(tesla.charge);
