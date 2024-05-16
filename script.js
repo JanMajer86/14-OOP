@@ -283,3 +283,72 @@ bmw.speedUS = 90;
 console.log(bmw.speedUS);
 bmw.accelerate();
 */
+
+// Inheritance Between "Classes": Constructor Functions
+
+/*
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype);
+// Student.prototype = Person.prototype; // wrong!
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}.`);
+};
+
+const mike = new Student('Mike', 2002, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__); // student proto
+console.log(mike.__proto__.__proto__); // person proto
+console.log(mike.__proto__.__proto__.__proto__); // constructor object
+// console.log(mike.__proto__.__proto__.__proto__.__proto__); // null
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
+*/
+
+// Coding Challenge 03
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+
+const tesla = new EV('Tesla', 120, 23);
+tesla.accelerate();
+console.log(tesla.speed);
+console.log(tesla.charge);
