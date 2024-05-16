@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -49,3 +50,48 @@ Person.prototype.species = 'Homo Sapiens';
 console.log(jonas.species, matilda.species);
 console.log(jonas.hasOwnProperty('firstName')); // true
 console.log(jonas.hasOwnProperty('species')); // false
+
+// Linked object.prototype
+console.log(jonas.__proto__);
+// Object.prototype (top of prototype chain)
+console.log(jonas.__proto__.__proto__);
+// null
+console.log(jonas.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 5, 6, 9, 3]; // new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+// don't do this, may break your code in future
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
+*/
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  console.log(`'${this.make}' going at ${this.speed * 1.1} km/h`);
+};
+Car.prototype.break = function () {
+  console.log(`'${this.make}' going at ${this.speed * 0.95} km/h`);
+};
+
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
+bmw.accelerate();
+bmw.break();
+mercedes.accelerate();
+mercedes.break();
