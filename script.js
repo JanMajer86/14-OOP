@@ -459,6 +459,7 @@ jay.calcAge();
 // 4. Private methods
 // {there is also the static version}
 
+/*
 class Account {
   // 1. Public fields (instances)
   locale = navigator.language;
@@ -522,3 +523,65 @@ Account.helper();
 // Chaining
 // returning "this" will make the method chainable
 acc1.deposit(300).deposit(500).withdraw(230).requestLoan(24000).withdraw(4000);
+
+*/
+
+// Coding Challenge 04
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+    return this;
+  }
+  break() {
+    this.speed -= 5;
+    console.log(`${this.make} going at ${this.speed} km/h`);
+    return this;
+  }
+  get speedUS() {
+    return `${this.speed / 1.6} mph`;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+// const bmw = new CarCl('BMW', 120);
+// bmw.accelerate();
+// bmw.break();
+// console.log(bmw.speedUS);
+// bmw.speedUS = 100;
+// console.log(bmw.speedUS);
+// bmw.accelerate();
+
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+rivian.accelerate().accelerate().break().chargeBattery(60).accelerate();
